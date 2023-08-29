@@ -3,6 +3,7 @@ import { NewListItem, ListItem } from '../../models/List'
 
 export async function getAllListItems() {
   const response = await request.get('/')
+  console.log(response)
   return response.body as ListItem[]
 }
 
