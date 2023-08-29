@@ -2,8 +2,8 @@ import request from 'superagent'
 import { NewListItem, ListItem } from '../../models/List'
 
 export async function getAllListItems() {
-  const response = await request.get('/')
-  console.log(response)
+  const response = await request.get('/api/v1/items')
+  console.log(response.body)
   return response.body as ListItem[]
 }
 
