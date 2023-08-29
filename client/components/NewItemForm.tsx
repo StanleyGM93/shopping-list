@@ -47,6 +47,7 @@ export default function NewItemForm() {
           onChange={handleChange}
         />
       </div>
+      <button type="submit">Add item</button>
     </form>
   )
 }
