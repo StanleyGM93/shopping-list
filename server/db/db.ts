@@ -6,7 +6,7 @@ export function getAllListItems(): Promise<ListItem[]> {
 }
 
 export function addListItem(newItem: NewListItem) {
-  return db('list').insert(newItem)
+  return db('list').insert(newItem).select('*')
 }
 
 export function deleteListItem(id: number) {
