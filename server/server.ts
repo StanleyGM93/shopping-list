@@ -6,7 +6,7 @@ import listRouter from './routes/list.ts'
 const server = express()
 server.use(express.json())
 
-server.use('/', listRouter)
+server.use('/api/v1/items', listRouter)
 
 if (process.env.NODE_ENV === 'production') {
   server.use(express.static(Path.resolve('public')))
