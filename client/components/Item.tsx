@@ -18,12 +18,14 @@ export default function Item({ listItem }: Item) {
 
   return (
     <li>
-      <p>
-        {listItem.item}, quantity: {listItem.quantity}
-      </p>
-      <button type="button" onClick={handleDelete}>
-        Delete
-      </button>
+      <div className="flex-items">
+        <p>
+          {listItem.item}, quantity: {listItem.quantity}
+        </p>
+        <button type="button" onClick={handleDelete}>
+          Delete
+        </button>
+      </div>
     </li>
   )
 }
