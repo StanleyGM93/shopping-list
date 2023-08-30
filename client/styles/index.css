@@ -1,8 +1,62 @@
 body {
-  position: absolute;
-  top: 0;
-  left: 0;
+  max-width: 600px;
   margin: 0;
   padding: 20px;
   font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+form {
+  background-color: lightgrey;
+  padding: 1rem;
+}
+
+input {
+  display: inline-block;
+  padding-block: 10px;
+  padding-inline: 5px;
+  margin-block: 5px;
+  width: 90%;
+}
+
+label {
+  display: block;
+  font-size: 15px;
+  margin-block: 5px;
+}
+
+button[type='submit'] {
+  width: 90%;
+  padding: 5px;
+  background-color: white;
+  border-radius: 4px;
+}
+
+button[type='submit']:hover {
+  background-color: blue;
+  color: white;
+}
+
+thead {
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+button[type='button'] {
+  padding: 5px;
+  background-color: rgb(250, 147, 147);
+  border-radius: 4px;
+}
+
+button[type='button']:hover {
+  background-color: red;
+  color: white;
+}
+
+.flex-items {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
