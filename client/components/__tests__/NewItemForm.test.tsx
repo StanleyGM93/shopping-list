@@ -1,11 +1,6 @@
 //@vitest-environment jsdom
 import { describe, it, expect } from 'vitest'
-import {
-  screen,
-  within,
-  waitFor,
-  waitForElementToBeRemoved,
-} from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import nock from 'nock'
 import { renderNewItemForm } from '../../test/setup'
 import userEvent from '@testing-library/user-event'
@@ -41,6 +36,8 @@ describe('<NewItemForm/>', () => {
     await user.type(quantityInput, '1')
     await user.click(submitButton)
 
+    expect(itemInput.textContent).toBe('')
+    expect(quantityInput.textContent).toBe('')
     expect(submitScope.isDone()).toBe(true)
   })
 })
