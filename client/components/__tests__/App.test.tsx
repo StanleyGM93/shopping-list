@@ -80,6 +80,7 @@ describe('<App/>', () => {
   })
 
   it('should delete an item when button is clicked', async () => {
+    // Initial render of App component
     const initialLoadingScope = nock('http://localhost')
       .get('/api/v1/items')
       .reply(200, [
@@ -101,14 +102,30 @@ describe('<App/>', () => {
       screen.getByText(/Loading the shopping list/i)
     )
 
-    // Todo, simulate user deleting an item from the list
-
-    const user = userEvent.setup()
-    const deleteButton = screen.getAllByRole('button', { name: 'Delete' })
-
     const listItems = screen.getAllByRole('listitem')
 
-    expect(listItems[1]).toBeInTheDocument()
+    expect(listItems).toHaveLength(2)
     expect(initialLoadingScope.isDone()).toBe(true)
+
+    // User deletes bananas from list
+    const deleteListItemScope = nock('http://localhost')
+      .delete('/api/v1/items/1')
+      .reply(204)
+
+    const user = userEvent.setup()
+
+    const bananaListItem = listItems[0]
+    const bananaDeleteButton = within(bananaListItem).getByRole('button')
+
+    await user.click(bananaDeleteButton)
+
+    await waitFor(() => {
+      expect(screen.queryByText(/bananas/i)).not.toBeInTheDocument()
+    })
+
+    const updatedListItems = screen.getAllByRole('listitem')
+    expect(updatedListItems).toMatchInlineSnapshot()
+    // expect(updatedListItems).toHaveLength(1)
+    expect(deleteListItemScope.isDone()).toBe(true)
   })
 })
