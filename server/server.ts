@@ -1,10 +1,12 @@
 import * as Path from 'node:path'
 import express from 'express'
+import compression from 'compression'
 
 import listRouter from './routes/list.ts'
 
 const server = express()
 server.use(express.json())
+server.use(compression())
 
 server.use('/api/v1/items', listRouter)
 
