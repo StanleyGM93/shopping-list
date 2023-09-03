@@ -112,10 +112,20 @@ describe('<App/>', () => {
       .delete('/api/v1/items/1')
       .reply(204)
 
-    const user = userEvent.setup()
+    const updatedLoadingScope = nock('http://localhost')
+      .get('/api/v1/items')
+      .reply(200, [
+        {
+          id: 2,
+          item: 'apples',
+          quantity: 2,
+        },
+      ])
 
+    const user = userEvent.setup()
     const bananaListItem = listItems[0]
     const bananaDeleteButton = within(bananaListItem).getByRole('button')
+    expect(bananaDeleteButton)
 
     await user.click(bananaDeleteButton)
 
@@ -123,9 +133,10 @@ describe('<App/>', () => {
       expect(screen.queryByText(/bananas/i)).not.toBeInTheDocument()
     })
 
-    const updatedListItems = screen.getAllByRole('listitem')
-    expect(updatedListItems).toMatchInlineSnapshot()
-    // expect(updatedListItems).toHaveLength(1)
+    const list = screen.getByRole('list')
+    const updatedListItems = within(list).getAllByRole('listitem')
+    expect(updatedListItems).toHaveLength(1)
     expect(deleteListItemScope.isDone()).toBe(true)
+    expect(updatedLoadingScope.isDone()).toBe(true)
   })
 })
