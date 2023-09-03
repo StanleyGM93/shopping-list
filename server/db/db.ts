@@ -5,10 +5,10 @@ export function getAllListItems(): Promise<ListItem[]> {
   return db('list').select()
 }
 
-export function addListItem(newItem: NewListItem) {
+export function addListItem(newItem: NewListItem): Promise<number[]> {
   return db('list').insert(newItem).select('*')
 }
 
-export function deleteListItem(id: number) {
+export async function deleteListItem(id: number): Promise<number> {
   return db('list').delete().where('id', id)
 }

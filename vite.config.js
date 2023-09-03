@@ -9,4 +9,7 @@ export default defineConfig({
       '/api': 'http://localhost:3000',
     },
   },
+  test: {
+    setupFiles: ['./client/test/setup.tsx'],
+  },
 })
