@@ -27,9 +27,9 @@ export default function NewItemForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h3>Add an item</h3>
+      <h2>Add an item</h2>
       <div className="form-item">
-        <label htmlFor="quantity">Item:</label>
+        <label htmlFor="item">Item:</label>
         <input
           type="text"
           name="item"
